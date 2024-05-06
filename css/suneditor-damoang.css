@@ -1,0 +1,177 @@
+.sun-editor {
+    border-color: var(--bs-border-color) !important;
+    background: var(--bs-body-bg);
+    color: var(--bs-body-color);
+}
+
+.sun-editor-editable {
+    font-size: 16px;
+}
+
+.sun-editor .se-container .se-toolbar {
+    background: var(--na-title-bg);
+    border-color: var(--bs-border-color);
+    outline: none
+}
+
+.sun-editor .se-container .se-toolbar .se-btn-tray .se-btn-module {
+    background: var(--bs-body-bg);
+    border-color: var(--bs-border-color);
+}
+
+.sun-editor .se-container .se-toolbar .se-btn-tray .se-btn-module .se-menu-list li button {
+    color: var(--bs-body-color);
+}
+
+.sun-editor .se-container .se-toolbar .se-btn-tray .se-btn-module .se-menu-list li button:hover {
+    background: var(--na-title-bg);
+    border-color: var(--bs-border-color);
+}
+
+.sun-editor .se-container .se-wrapper {
+    background: var(--bs-body-bg);
+}
+
+.sun-editor .se-container .se-wrapper .se-wrapper-inner {
+    background: var(--bs-body-bg);
+    color: var(--bs-body-color);
+}
+
+.sun-editor .se-container .se-resizing-bar {
+    background: var(--na-title-bg);
+    border-color: var(--bs-border-color);
+}
+
+.sun-editor-editable[contenteditable=true] .se-component {
+    outline-color : var(--bs-border-color);
+}
+
+.sun-editor select, .sun-editor textarea {
+    border-color : var(--bs-border-color);
+    background: var(--bs-body-bg);
+    color: var(--bs-body-color);
+}
+
+.sun-editor .se-dialog .se-dialog-inner .se-dialog-content {
+    background: var(--bs-body-bg);
+}
+
+.sun-editor .se-dialog .se-dialog-inner .se-dialog-header .se-dialog-close {
+    text-shadow: 0 1px 0 var(--na-title-bg);
+}
+
+.sun-editor .se-dialog-tabs button {
+    background: var(--bs-secondary-bg);
+    border-right-color: var(--bs-border-color);
+}
+
+.sun-editor .se-dialog-tabs button.active {
+    
+    background: var(--bs-body-bg);
+}
+
+.sun-editor .se-dialog .se-dialog-inner .se-dialog-header {
+    border-bottom-color: var(--bs-border-color);
+}
+
+.sun-editor .se-dialog-tabs {
+    border-bottom-color: var(--bs-border-color);
+}
+
+.sun-editor .se-dialog .se-dialog-inner .se-dialog-body>div {
+    border-bottom-color: var(--bs-border-color) !important;
+}
+
+.sun-editor .se-dialog .se-dialog-inner .se-dialog-footer {
+    border-top-color: var(--bs-border-color);
+}
+
+.sun-editor .se-btn-primary {
+    background: var(--na-title-bg);
+    border-color:  var(--bs-border-color);
+}
+
+.sun-editor .se-dialog .se-dialog-inner .se-dialog-form .se-dialog-form-files .se-dialog-files-edge-button {
+    border-color:  var(--bs-border-color);
+}
+
+.sun-editor .se-dialog .se-dialog-inner .se-dialog-btn-revert {
+    border-color:  var(--bs-border-color);
+}
+
+.sun-editor .se-dialog button, .sun-editor .se-dialog input, .sun-editor .se-dialog label {
+    color: var(--bs-body-color);
+}
+
+
+.sun-editor .se-btn:enabled:focus, .sun-editor .se-btn:enabled:hover {
+    background: var(--na-title-bg);
+    border-color: var(--bs-secondary-bg);
+}
+
+.sun-editor .se-dialog .se-dialog-inner .se-dialog-form .se-dialog-form-files .se-dialog-files-edge-button:hover {
+    background: var(--na-title-bg);
+}
+
+.sun-editor .se-dialog .se-dialog-inner .se-dialog-btn-revert:hover {
+    background: var(--na-title-bg);
+}
+
+.sun-editor .se-btn:enabled.on {
+    background: var(--na-title-bg);
+    border-color: var(--bs-border-color);
+}
+
+.sun-editor .se-btn-module .se-btn-more.on {
+    background: var(--na-title-bg);
+    border-color: var(--bs-border-color);
+}
+
+.sun-editor .se-toolbar-more-layer .se-more-layer {
+    border-top-color: var(--bs-border-color);
+}
+
+.sun-editor .se-toolbar-more-layer {
+    background: var(--bs-secondary-bg);
+}
+
+.sun-editor button {
+    color: var(--bs-body-color);
+}
+
+.sun-editor .se-list-layer {
+    background: var(--bs-secondary-bg);
+    border-color: var(--bs-border-color);
+}
+
+.sun-editor .se-btn-list.default_value {
+    background: var(--na-title-bg);
+}
+
+.sun-editor .se-btn:enabled.on:focus, .sun-editor .se-btn:enabled.on:hover {
+    background: var(--na-title-bg);
+    border-color: var(--bs-border-color);
+}
+
+.sun-editor .se-btn-list:focus, .sun-editor .se-btn-list:hover {
+    background: var(--na-title-bg);
+    border-color: var(--bs-border-color);
+}
+.sun-editor .se-list-layer.se-list-format ul h1 {
+    color: var(--bs-body-color);
+}
+.sun-editor .se-list-layer.se-list-format ul h2 {
+    color: var(--bs-body-color);
+}
+.sun-editor .se-list-layer.se-list-format ul h3 {
+    color: var(--bs-body-color);
+}
+.sun-editor .se-list-layer.se-list-format ul h4 {
+    color: var(--bs-body-color);
+}
+.sun-editor .se-list-layer.se-list-format ul h5 {
+    color: var(--bs-body-color);
+}
+.sun-editor .se-list-layer.se-list-format ul h6 {
+    color: var(--bs-body-color);
+}
