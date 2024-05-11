@@ -1,8 +1,5 @@
 <?php
 
-/**
- * Tiny MCE 6
- */
 if (!defined('_GNUBOARD_')) {
   exit;
 }
@@ -62,6 +59,12 @@ function editor_html($id, $content, $is_dhtml_editor = true)
     $html .= '<script src="' . G5_EDITOR_URL . '/' . $config['cf_editor'] . '/ko.js"></script>';
     $html .= '<link rel="stylesheet" href="' . G5_EDITOR_URL . '/' . $config['cf_editor'] . '/css/suneditor.min.css">';
     $html .= '<link rel="stylesheet" href="' . G5_EDITOR_URL . '/' . $config['cf_editor'] . '/css/suneditor-damoang.css">';
+    $html .= '<script src="' . G5_EDITOR_URL . '/' . $config['cf_editor'] . '/codemirror/codemirror.min.js"></script>';
+    $html .= '<script src="' . G5_EDITOR_URL . '/' . $config['cf_editor'] . '/codemirror/css.js"></script>';
+    $html .= '<script src="' . G5_EDITOR_URL . '/' . $config['cf_editor'] . '/codemirror/xml.js"></script>';
+    $html .= '<script src="' . G5_EDITOR_URL . '/' . $config['cf_editor'] . '/codemirror/htmlmixed.js"></script>';
+    $html .= '<link href="' . G5_EDITOR_URL . '/' . $config['cf_editor'] . '/codemirror/codemirror.min.css" rel="stylesheet"/>';
+
     $js = false;
   }
 
@@ -148,7 +151,7 @@ function editor_html($id, $content, $is_dhtml_editor = true)
         imageMultipleFile : true,
         charCounter : true,
         lineAttrReset : '*',
-        
+        codeMirror: CodeMirror
     });
 
     //var converter = new showdown.Converter();
