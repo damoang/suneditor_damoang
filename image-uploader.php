@@ -87,6 +87,26 @@ foreach ($_FILES as $temp){
     // Use a location key to specify the path to the saved image resource.
     // { location : '/your/uploaded/image/file'}
     $size = @filesize($filetowrite);
+
+    $fileInfo = new \stdClass();
+    $fileInfo->name = (string) $upload;
+    $fileInfo->size = (int) $size;
+    $fileInfo->url = (string) $imageurl_full;
+    $fileInfo->oriname = (string) $temp['name'];
+
+    // 그누보드의 공용 이벤트
+    // 업로드된 파일 정보를 받아 처리 후 이미지 파일의 URL을 반환
+    $imageurl_full = run_replace(
+        /* 이벤트 ID */
+        'get_editor_upload_url',
+        /* 이미지 URL */
+        $imageurl_full,
+        /* 이미지 Path. 서버 내 절대 경로 */
+        $filetowrite,
+        /* 파일의 정보 */
+        $fileInfo
+    );
+
     array_push($result, array('url' => $imageurl_full, 'name' => $upload, 'size' => $size));
 }
 
