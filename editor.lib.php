@@ -1,39 +1,16 @@
 <?php
 
-if (!defined('_GNUBOARD_')) {
-  exit;
-}
-/***************************************************
- * Only these origins are allowed to upload images *
- ***************************************************/
-if (!function_exists('_get_hostname')) {
-  /**
-   *  사이트 URL
-   */
-  function _get_hostname()
-  {
-    if ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) {
-      $protocol = 'https://';
-    } else {
-      $protocol = 'http://';
-    }
-    //cloudflare 사용시 처리
-    if (isset($_SERVER['HTTP_CF_VISITOR']) && $_SERVER['HTTP_CF_VISITOR']) {
-      if (json_decode($_SERVER['HTTP_CF_VISITOR'])->scheme == 'https')
-        $_SERVER['HTTPS'] = 'on';
-      $protocol = 'https://';
-    }
+require_once __DIR__ .'/utils.php';
 
-    $domainName = $_SERVER['HTTP_HOST'];
-    return $protocol . $domainName;
-  }
+if (!defined('_GNUBOARD_')) {
+    exit;
 }
+
 
 function editor_html($id, $content, $is_dhtml_editor = true)
 {
-  global $g5, $config, $w, $board, $write;
+  global $config, $w, $board, $write;
   static $js = true;
-  $hostname = _get_hostname();
 
   if (
     $is_dhtml_editor && $content && (
@@ -46,25 +23,22 @@ function editor_html($id, $content, $is_dhtml_editor = true)
   }
   //$config['cf_editor'] 는 common.php에서 처리하네.
   $editor_url = (isset($board['bo_select_editor']) && $board['bo_select_editor'] != '') ?  G5_EDITOR_URL . '/' . $board['bo_select_editor'] : G5_EDITOR_URL . '/' . $config['cf_editor'];
-  $editor_path = G5_DATA_PATH . '/' . 'editor';
-  if (!file_exists($editor_path)) {
-    mkdir($editor_path, 0777, true);
-  }
 
   $html = '';
   $html .= '<span class="sr-only">웹에디터 시작</span>';
-
   if ($is_dhtml_editor && $js) {
-    $html .= '<script src="' . G5_EDITOR_URL . '/' . $config['cf_editor'] . '/suneditor.min.js"></script>';
-    $html .= '<script src="' . G5_EDITOR_URL . '/' . $config['cf_editor'] . '/ko.js"></script>';
-    $html .= '<link rel="stylesheet" href="' . G5_EDITOR_URL . '/' . $config['cf_editor'] . '/css/suneditor.min.css">';
-    $html .= '<link rel="stylesheet" href="' . G5_EDITOR_URL . '/' . $config['cf_editor'] . '/css/suneditor-damoang.css">';
-    $html .= '<script src="' . G5_EDITOR_URL . '/' . $config['cf_editor'] . '/codemirror/codemirror.min.js"></script>';
-    $html .= '<script src="' . G5_EDITOR_URL . '/' . $config['cf_editor'] . '/codemirror/css.js"></script>';
-    $html .= '<script src="' . G5_EDITOR_URL . '/' . $config['cf_editor'] . '/codemirror/xml.js"></script>';
-    $html .= '<script src="' . G5_EDITOR_URL . '/' . $config['cf_editor'] . '/codemirror/htmlmixed.js"></script>';
-    $html .= '<link href="' . G5_EDITOR_URL . '/' . $config['cf_editor'] . '/codemirror/codemirror.min.css" rel="stylesheet"/>';
-
+      $editor_url = G5_EDITOR_URL . '/' . $config['cf_editor'];
+      $html .= <<<HTML
+    <script src="$editor_url/suneditor.min.js"></script>
+    <script src="$editor_url/ko.js"></script>
+    <link rel="stylesheet" href="$editor_url/css/suneditor.min.css">
+    <link rel="stylesheet" href="$editor_url/css/suneditor-damoang.css">
+    <script src="$editor_url/codemirror/codemirror.min.js"></script>
+    <script src="$editor_url/codemirror/css.js"></script>
+    <script src="$editor_url/codemirror/xml.js"></script>
+    <script src="$editor_url/codemirror/htmlmixed.js"></script>
+    <link href="$editor_url/codemirror/codemirror.min.css" rel="stylesheet"/>
+    HTML;
     $js = false;
   }
 
@@ -163,7 +137,7 @@ function editor_html($id, $content, $is_dhtml_editor = true)
 }
 
 
-// textarea 로 값을 넘긴다. javascript 반드시 필요
+// textarea 로 값을 넘긴다. js 필수
 function get_editor_js($id, $is_dhtml_editor = true)
 {
   if ($is_dhtml_editor) {
@@ -174,7 +148,7 @@ function get_editor_js($id, $is_dhtml_editor = true)
 }
 
 
-//  textarea 의 값이 비어 있는지 검사
+//textarea 의 값이 비어 있는지 검사
 function chk_editor_js($id, $is_dhtml_editor = true)
 {
   if ($is_dhtml_editor) {
