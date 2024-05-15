@@ -1,9 +1,22 @@
 <?php
 include_once "./_common.php";
 require_once __DIR__ .'/utils.php';
+
 /***************************************************
  * Only these origins are allowed to upload images *
  ***************************************************/
+$is_receive_token = false;
+
+$get_nonce_token = get_session('nonce_' . FT_NONCE_SESSION_KEY);
+
+if ($get_nonce_token && ft_nonce_is_valid($get_nonce_token, UPLOAD_NONCE_TOKEN_NAME)) {
+    $is_receive_token = true;
+}
+
+if (!$is_receive_token) {
+    echo json_encode(array('errorMessage' => '요청이 올바르지 않습니다.'));
+    return;
+}
 
 $accepted_origins = array(_get_hostname());
 

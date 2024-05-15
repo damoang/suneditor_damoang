@@ -42,6 +42,8 @@ function editor_html($id, $content, $is_dhtml_editor = true)
     $js = false;
   }
 
+  ft_nonce_create(UPLOAD_NONCE_TOKEN_NAME);
+
   $suneditor_class = $is_dhtml_editor ? 'suneditor ' : '';
   $html .= '<textarea id="' . $id . '" name="' . $id . '" class=" form-control ' . $suneditor_class . '" maxlength="65536">' . $content . '</textarea>';
   $html .= '<span class="sr-only">웹 에디터 끝</span>';
