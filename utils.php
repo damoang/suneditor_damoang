@@ -18,7 +18,7 @@ function _get_hostname()
 
 define('FT_NONCE_UNIQUE_KEY', sha1($_SERVER['SERVER_SOFTWARE'] . session_id() . G5_TABLE_PREFIX));
 
-define('FT_NONCE_SESSION_KEY', sha256(FT_NONCE_UNIQUE_KEY));
+define('FT_NONCE_SESSION_KEY', hash('sha256', FT_NONCE_UNIQUE_KEY));
 
 const UPLOAD_NONCE_TOKEN_NAME = 'image_upload';
 const FT_NONCE_DURATION = 60 * 30; // 초단위
