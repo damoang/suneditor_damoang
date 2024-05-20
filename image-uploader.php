@@ -1,31 +1,23 @@
 <?php
 include_once "./_common.php";
+require_once __DIR__ .'/utils.php';
 
 /***************************************************
  * Only these origins are allowed to upload images *
  ***************************************************/
-if (!function_exists('_get_hostname')) {
-    /**
-     *  사이트 URL
-     */
-    function _get_hostname()
-    {
-        if ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) {
-            $protocol = 'https://';
-        } else {
-            $protocol = 'http://';
-        }
-        //cloudflare 사용시 처리
-        if (isset($_SERVER['HTTP_CF_VISITOR']) && $_SERVER['HTTP_CF_VISITOR']) {
-            if (json_decode($_SERVER['HTTP_CF_VISITOR'])->scheme == 'https')
-                $_SERVER['HTTPS'] = 'on';
-            $protocol = 'https://';
-        }
+$is_receive_token = false;
 
-        $domainName = $_SERVER['HTTP_HOST'];
-        return $protocol . $domainName;
-    }
+$get_nonce_token = get_session('nonce_' . FT_NONCE_SESSION_KEY);
+
+if ($get_nonce_token && ft_nonce_is_valid($get_nonce_token, UPLOAD_NONCE_TOKEN_NAME)) {
+    $is_receive_token = true;
 }
+
+if (!$is_receive_token) {
+    echo json_encode(array('errorMessage' => '요청이 올바르지 않습니다.'));
+    return;
+}
+
 $accepted_origins = array(_get_hostname());
 
 # 이미지 저장 폴더
@@ -33,10 +25,8 @@ $imageFolder = G5_DATA_PATH . '/' . 'editor/';
 $imageurl =  G5_DATA_URL . '/' . 'editor/';
 @mkdir($imageFolder, G5_DIR_PERMISSION);
 
-reset($_FILES);
-//$temp = current($_FILES);
 $result = array();
-foreach ($_FILES as $temp){
+foreach ($_FILES as $temp) {
     if (isset($temp['tmp_name']) && is_uploaded_file($temp['tmp_name'])) {
         if (isset($_SERVER['HTTP_ORIGIN'])) {
             // same-origin requests won't set an origin. If the origin is set, it must be valid.
@@ -74,7 +64,7 @@ foreach ($_FILES as $temp){
     }
 }
 
-foreach ($_FILES as $temp){
+foreach ($_FILES as $temp) {
     //파일명 변경
     $upload = cut_str(md5(sha1($_SERVER['REMOTE_ADDR'])), 5, '-') . uniqid() . '-' . replace_filename($temp['name']);
 
