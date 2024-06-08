@@ -127,12 +127,13 @@ function editor_html($id, $content, $is_dhtml_editor = true)
         imageMultipleFile : true,
         charCounter : true,
         lineAttrReset : '*',
-        codeMirror: CodeMirror
+        codeMirror: CodeMirror,
+        attributesBlacklist: {'span': 'style', 'p': 'style'}
     });
 
     //var converter = new showdown.Converter();
     //document.suneditor.onChange = function (contents, core) { console.log('onChange', contents); console.log(converter.makeHtml(document.suneditor.getText())); document.suneditor.insertHTML(converter.makeHtml(document.suneditor.getText()));}
-  });
+    });
   </script>";
 
   return $html;
