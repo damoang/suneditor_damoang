@@ -127,7 +127,8 @@ function editor_html($id, $content, $is_dhtml_editor = true)
         imageMultipleFile : true,
         charCounter : true,
         lineAttrReset : '*',
-        codeMirror: CodeMirror
+        codeMirror: CodeMirror,
+        pasteTagsBlacklist: 'span'
     });
 
     //var converter = new showdown.Converter();
